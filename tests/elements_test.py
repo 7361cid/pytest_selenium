@@ -1,6 +1,6 @@
 import time
 
-from pages.elements_page import TextBoxPage, CheckboxPage, RadioButtonPage, TablePage
+from pages.elements_page import TextBoxPage, CheckboxPage, RadioButtonPage, TablePage, ButtonsPage
 
 class TestElements:
 
@@ -39,7 +39,50 @@ class TestElements:
     #         assert results2 == "Impressive", "Results not equal impressive"
     #         assert results3 == "Impressive", "Results not equal impressive"
 
-    class TestTable:
-        def test_add_person(self, driver):
-            page = TablePage(driver, "https://demoqa.com/webtables")
+   # class TestTable:
+        # def test_add_person(self, driver):
+        #     page = TablePage(driver, "https://demoqa.com/webtables")
+        #     page.open()
+        #     input = page.add_new_person()
+        #     output = page.check_new_added_person()
+        #     assert input in output
+
+        # def test_table_search(self, driver):
+        #     page = TablePage(driver, "https://demoqa.com/webtables")
+        #     page.open()
+        #     input = page.add_new_person()
+        #     page.search(input[0])
+        #     output = page.check_search()
+        #     assert input == output
+
+        # def test_edit_person(self, driver):
+        #     page = TablePage(driver, "https://demoqa.com/webtables")
+        #     page.open()
+        #     input = page.add_new_person()
+        #     page.search(input[0])
+        #     age = page.update_person_info()
+        #     output = page.check_search()
+        #     assert age in output
+
+        # def test_delete_person(self, driver):
+        #     page = TablePage(driver, "https://demoqa.com/webtables")
+        #     page.open()
+        #     input = page.add_new_person()
+        #     page.search(input[0])
+        #     page.delete_person()
+        #     text = page.check_deleted()
+        #     assert text == "No rows found"
+        # def test_count_row(self, driver):
+        #     page = TablePage(driver, "https://demoqa.com/webtables")
+        #     page.open()
+        #     page.select_rows_count()
+        #     rows_count = page.get_rows_count()
+        #     assert rows_count == 25
+    class TestButtons:
+        def test_buttons_click(self, driver):
+            page = ButtonsPage(driver, "https://demoqa.com/buttons")
             page.open()
+            texts = page.click_buttons()
+            assert texts[0] == "You have done a dynamic click"
+            assert texts[1] == "You have done a double click"
+            assert texts[2] == "You have done a right click"

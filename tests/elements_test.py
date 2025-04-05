@@ -1,6 +1,7 @@
 import time
 
-from pages.elements_page import TextBoxPage, CheckboxPage, RadioButtonPage, TablePage, ButtonsPage
+from pages.elements_page import TextBoxPage, CheckboxPage, RadioButtonPage, TablePage, ButtonsPage, \
+    LinksPage, DownloadPage
 
 class TestElements:
 
@@ -78,11 +79,32 @@ class TestElements:
         #     page.select_rows_count()
         #     rows_count = page.get_rows_count()
         #     assert rows_count == 25
-    class TestButtons:
-        def test_buttons_click(self, driver):
-            page = ButtonsPage(driver, "https://demoqa.com/buttons")
+    # class TestButtons:
+    #     def test_buttons_click(self, driver):
+    #         page = ButtonsPage(driver, "https://demoqa.com/buttons")
+    #         page.open()
+    #         texts = page.click_buttons()
+    #         assert texts[0] == "You have done a dynamic click"
+    #         assert texts[1] == "You have done a double click"
+    #         assert texts[2] == "You have done a right click"
+
+    # class TestLinks:
+    #     def test_check_link(self, driver):
+    #         page = LinksPage(driver, "https://demoqa.com/links")
+    #         page.open()
+    #         element_link, current_url = page.click_new_tab_simlpe_link()
+    #         print(element_link, current_url)
+    #         assert element_link == "https://demoqa.com/"
+    #         assert current_url == "https://demoqa.com/"
+    #
+    #     def test_broken_link(self, driver):
+    #         page = LinksPage(driver, "https://demoqa.com/links")
+    #         page.open()
+    #         response_code = page.check_broken_link("https://demoqa.com/bad-request")
+    #         assert response_code == 400
+
+    class TestDownload:
+        def test_download_file(self, driver):
+            page = DownloadPage(driver, "https://demoqa.com/upload-download")
             page.open()
-            texts = page.click_buttons()
-            assert texts[0] == "You have done a dynamic click"
-            assert texts[1] == "You have done a double click"
-            assert texts[2] == "You have done a right click"
+            page.download_file()

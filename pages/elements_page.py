@@ -1,11 +1,13 @@
 import time
 import random
+import requests
+import pathlib
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
 from pages.base_page import BasePage
 from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonPageLocators,\
-    TablePageLocators, ButtonsPageLocators
+    TablePageLocators, ButtonsPageLocators, LinksPageLocators, DownloadPageLocators
 from generator.generator import generated_person
 
 
@@ -160,3 +162,33 @@ class ButtonsPage(BasePage):
         self.action_right_click(element)
         text3 = self.element_is_visible(self.locators.RIGHT_CLICK_TEXT).text
         return [text, text2, text3]
+
+class LinksPage(BasePage):
+    locators = LinksPageLocators()
+
+    def click_new_tab_simlpe_link(self):
+        element = self.element_is_visible(self.locators.SIMPLE_LINK)
+        link = element.get_attribute('href')
+        response = requests.get(link)
+        if response.status_code == 200:
+            element.click()
+            self.switch_to_new_tab(1)
+            url = self.driver.current_url
+            return link, url
+        else:
+            print(f"STATUS CODE {response.status_code}")
+
+    def check_broken_link(self, url):
+        response = requests.get(url)
+        if response.status_code == 200:
+            self.element_is_visible(self.locators.BAD_REQUEST_LINK).click()
+        else:
+            return response.status_code
+
+class DownloadPage(BasePage):
+    locators = DownloadPageLocators()
+    def download_file(self):
+        self.element_is_present(self.locators.DOWNLOAD_URL)
+
+    def upload_file(self):
+        file_path = pathlib

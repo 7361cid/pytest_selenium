@@ -65,3 +65,16 @@ class ButtonsPageLocators:
     RIGHT_CLICK_TEXT = (By.XPATH, '//*[@id="rightClickMessage"]')
     CLICK_TEXT = (By.XPATH, '//*[@id="dynamicClickMessage"]')
 
+
+class LinksPageLocators:
+    SIMPLE_LINK = (By.XPATH, '//*[@id="simpleLink"]')
+    DYNAMIC_LINK = (By.XPATH, '//*[@id="dynamicLink"]')
+    CREATED_LINK = (By.XPATH, '//*[@id="created"]')
+    NO_CONTENT_LINK = (By.XPATH, '//*[@id="no-content"]')
+    MOVED_LINK = (By.XPATH, '//*[@id="moved"]')
+    BAD_REQUEST_LINK = (By.XPATH, '//*[@id="bad-request"]')
+    UNAUTHORIZED_LINK = (By.XPATH, '//*[@id="unauthorized"]')
+
+class DownloadPageLocators:
+    DOWNLOAD_URL = (By.XPATH, '//*[@id="downloadButton"]')
+    UPLOAD_INPUT = (By.XPATH, '//*[@id="uploadFile"]')

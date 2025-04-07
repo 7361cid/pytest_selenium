@@ -1,3 +1,6 @@
+import base64
+import os
+import imghdr
 import time
 import random
 import requests
@@ -8,7 +11,7 @@ from selenium.webdriver.support.ui import Select
 from pages.base_page import BasePage
 from locators.elements_page_locators import TextBoxPageLocators, CheckBoxPageLocators, RadioButtonPageLocators,\
     TablePageLocators, ButtonsPageLocators, LinksPageLocators, DownloadPageLocators
-from generator.generator import generated_person
+from generator.generator import generated_person, generated_file
 
 
 class TextBoxPage(BasePage):
@@ -188,7 +191,23 @@ class LinksPage(BasePage):
 class DownloadPage(BasePage):
     locators = DownloadPageLocators()
     def download_file(self):
-        self.element_is_present(self.locators.DOWNLOAD_URL)
+        element = self.element_is_present(self.locators.DOWNLOAD_URL)
+        link = element.get_attribute('href')
+        link_base64 = base64.b64decode(link)
+        current_dir = pathlib.Path(__file__).parent
+        path = os.path.join(current_dir, "tmp.jpg")
+        with open(path, 'wb+') as f:
+            offset = link_base64.find(b'\xff\xd8')
+            f.write(link_base64[offset:])
+            os.path.exists(path)
+            f.close()
+        image_type = imghdr.what(path)
+        os.remove(path)
+        return image_type
 
     def upload_file(self):
-        file_path = pathlib
+        file_path = generated_file()
+        self.element_is_present(self.locators.UPLOAD_INPUT).send_keys(file_path)
+        os.remove(file_path)
+        return self.element_is_visible(self.locators.FILE_TEXT).text
+

@@ -78,3 +78,4 @@ class LinksPageLocators:
 class DownloadPageLocators:
     DOWNLOAD_URL = (By.XPATH, '//*[@id="downloadButton"]')
     UPLOAD_INPUT = (By.XPATH, '//*[@id="uploadFile"]')
+    FILE_TEXT = (By.XPATH, '//*[@id="uploadedFilePath"]')

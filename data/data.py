@@ -12,3 +12,11 @@ class Person:
     email: str = None
     current_address: str = None
     permanent_address: str = None
+    phone: str = None
+
+@dataclass
+class Date:
+    year: str = None
+    month: str = None
+    day: str = None
+    time: str = None

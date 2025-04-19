@@ -75,7 +75,14 @@ class LinksPageLocators:
     BAD_REQUEST_LINK = (By.XPATH, '//*[@id="bad-request"]')
     UNAUTHORIZED_LINK = (By.XPATH, '//*[@id="unauthorized"]')
 
+
 class DownloadPageLocators:
     DOWNLOAD_URL = (By.XPATH, '//*[@id="downloadButton"]')
     UPLOAD_INPUT = (By.XPATH, '//*[@id="uploadFile"]')
     FILE_TEXT = (By.XPATH, '//*[@id="uploadedFilePath"]')
+
+
+class DynamicElementsPageLocators:
+    BUTTON_ENABLED_AFTER = (By.XPATH, '//*[@id="enableAfter"]')
+    BUTTON_VISIBLE_AFTER = (By.XPATH, '//*[@id="visibleAfter"]')
+    BUTTON_COLOR_CHANGE = (By.XPATH, '//*[@id="colorChange"]')

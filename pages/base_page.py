@@ -50,3 +50,20 @@ class BasePage:
 
     def switch_to_new_tab(self, i):
         self.driver.switch_to.window(self.driver.window_handles[i])
+
+    def action_drag_and_drop_by_offset(self, element, x=0, y=0, is_locator=False):
+        actions = ActionChains(self.driver)
+        if is_locator:
+            element = self.element_is_present(element)
+        actions.drag_and_drop_by_offset(element, x, y).perform()
+
+    def action_drag_and_drop_to_element(self, element_from, element_to):
+        actions = ActionChains(self.driver)
+        actions.drag_and_drop(element_from, element_to)
+        actions.perform()
+
+    def action_hover(self, hover_element, is_locator=True):
+        actions = ActionChains(self.driver)
+        if is_locator:
+            hover_element = self.element_is_present(hover_element)
+        actions.move_to_element(hover_element).perform()
